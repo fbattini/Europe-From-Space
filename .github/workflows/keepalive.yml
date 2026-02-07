@@ -1,0 +1,19 @@
+name: Keep Actions Alive
+
+on:
+  schedule:
+    - cron: "0 0 * * 0"  # weekly
+  workflow_dispatch:
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Touch keepalive
+        run: |
+          echo "$(date -u)" > .keepalive
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+          git add .keepalive
+          git commit -m "chore: keepalive" || exit 0
+          git push
