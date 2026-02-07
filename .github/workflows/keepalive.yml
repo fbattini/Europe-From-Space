@@ -2,7 +2,7 @@ name: Keep Actions Alive
 
 on:
   schedule:
-    - cron: "0 0 * * 0"  # weekly
+    - cron: "0 0 1 * 1"  # monthly
   workflow_dispatch:
 
 jobs:
